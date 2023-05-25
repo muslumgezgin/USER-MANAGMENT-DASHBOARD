@@ -34,9 +34,6 @@ export class UserListComponent implements OnInit {
   constructor(private userService: UserService, private route: Router) { }
   ngOnInit(): void {
     this.getUsers();
-    BackendServiceHelper.finisAllEventsFromLocalStorage(this.userService).subscribe(data => {
-      this.getUsers();
-    });
   }
 
   ngAfterViewInit() {

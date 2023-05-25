@@ -9,7 +9,7 @@ export class BackendServiceHelper {
         return "http://localhost:3000/";
     }
 
-    static apiStartTime: Time = { hours: 19, minutes: 0 }
+    static apiStartTime: Time = { hours: 16, minutes: 0 }
     static apiEndTime: Time = { hours: 0, minutes: 0 };
 
     static isBackendServiceAvailable(): boolean {
