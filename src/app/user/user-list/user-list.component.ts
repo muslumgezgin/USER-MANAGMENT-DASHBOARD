@@ -5,6 +5,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { BackendServiceHelper } from 'src/app/core/Helpers/backend-service.helper';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-list',
@@ -70,17 +71,27 @@ export class UserListComponent implements OnInit {
   }
 
   delete(user: User) {
-    console.log(user);
-    this.userService.deleteUser(user.id).subscribe(data => {
-      if (data) {
-        this.getUsers();
-      } else {
-        console.error('Error al eliminar el usuario');
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.deleteUser(user.id).subscribe(data => {
+          if (data) {
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
+            this.getUsers();
+          }
+        });
       }
-    });
-
+    })
   }
-
-
-
 }
