@@ -5,6 +5,7 @@ import { StorageEventType, User } from 'src/app/core/models/user.model';
 import { UserService } from 'src/app/core/services/user.service';
 import { DEFAULT_USER } from '../user-contant';
 import { BackendServiceHelper } from 'src/app/core/Helpers/backend-service.helper';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-user',
@@ -30,6 +31,17 @@ export class AddUserComponent implements OnInit {
     this.router.navigate(['users']);
   }
 
+  fireSweetAlert(message: string) {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: message,
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
+
   addUser() {
     this.user.name = this.addUserForm.value.name;
     this.user.surname = this.addUserForm.value.surname;
@@ -39,12 +51,17 @@ export class AddUserComponent implements OnInit {
       this.userService.createUser(this.user).subscribe(data => {
         this.user = data;
         if (data) {
+          let message = this.user.name +' added successfully';
+          this.fireSweetAlert(message);
           this.router.navigate(['users']);
         }
       })
 
     } else {
       BackendServiceHelper.addUserEventToLocalStorage({ user: this.user, eventType: StorageEventType.Add });
+      let message = this.user.name + " saved event saved local storage";
+      this.fireSweetAlert(message)
+      
       this.router.navigate(['users']);
     }
   }

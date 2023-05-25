@@ -5,6 +5,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { DEFAULT_USER } from '../user-contant';
 import { FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { BackendServiceHelper } from 'src/app/core/Helpers/backend-service.helper';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-user',
@@ -42,8 +43,18 @@ export class EditUserComponent implements OnInit {
 
   }
 
-  cancel(){
+  cancel() {
     this.router.navigate(['users']);
+  }
+
+  fireSweetAlert(message: string) {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: message,
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
   updateUser() {
     this.user.name = this.myForm.value.name;
@@ -53,14 +64,17 @@ export class EditUserComponent implements OnInit {
       this.userService.updateUser(this.user).subscribe(data => {
         this.user = data;
         if (data) {
+          let message = this.user.name + " updated successfully";
+          this.fireSweetAlert(message);
           this.router.navigate(['users']);
-
         }
       })
 
     } else {
       BackendServiceHelper.addUserEventToLocalStorage({ user: this.user, eventType: StorageEventType.Update });
-      // this.router.navigate(['users']);
+      let message = this.user.name + " updated event saved local storage";
+      this.fireSweetAlert(message);
+      this.router.navigate(['users']);
     }
 
   }

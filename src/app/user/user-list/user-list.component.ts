@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { User } from 'src/app/core/models/user.model';
+import { StorageEventType, User } from 'src/app/core/models/user.model';
 import { UserService } from 'src/app/core/services/user.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -67,6 +67,13 @@ export class UserListComponent implements OnInit {
     this.route.navigate(['users/add']);
   }
 
+  fireSweetAlert(message: string) {
+    Swal.fire(
+      message,
+      'success'
+    )
+  }
+
   delete(user: User) {
     Swal.fire({
       title: 'Are you sure?',
@@ -78,16 +85,24 @@ export class UserListComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.userService.deleteUser(user.id).subscribe(data => {
-          if (data) {
-            Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-            )
-            this.getUsers();
-          }
-        });
+
+        if (BackendServiceHelper.isBackendServiceAvailable()) {
+
+          this.userService.deleteUser(user.id).subscribe(data => {
+            if (data) {
+              let message = user.name + " deleted";
+              this.fireSweetAlert(message);
+              this.getUsers();
+            }
+          });
+
+        } else {
+          BackendServiceHelper.addUserEventToLocalStorage({ user: user, eventType: StorageEventType.Delete });
+          let message = user.name + " deleted event saved local storage";
+          this.fireSweetAlert(message)
+        }
+
+
       }
     })
   }
