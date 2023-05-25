@@ -42,12 +42,13 @@ export class EditUserComponent implements OnInit {
 
   }
 
+  cancel(){
+    this.router.navigate(['users']);
+  }
   updateUser() {
-
     this.user.name = this.myForm.value.name;
     this.user.surname = this.myForm.value.surname;
     this.user.email = this.myForm.value.email;
-
     if (BackendServiceHelper.isBackendServiceAvailable()) {
       this.userService.updateUser(this.user).subscribe(data => {
         this.user = data;

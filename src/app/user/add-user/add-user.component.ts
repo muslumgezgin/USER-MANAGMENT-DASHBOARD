@@ -26,6 +26,10 @@ export class AddUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  cancel(){
+    this.router.navigate(['users']);
+  }
+
   addUser() {
     this.user.name = this.addUserForm.value.name;
     this.user.surname = this.addUserForm.value.surname;
