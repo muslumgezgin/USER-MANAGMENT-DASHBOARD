@@ -50,6 +50,11 @@ export class EditUserComponent implements OnInit {
   }
 
   updateUser() {
+    if(this.myForm.invalid){
+      this.myForm.markAllAsTouched();
+      return;
+    }
+
     this.user.name = this.myForm.value.name;
     this.user.surname = this.myForm.value.surname;
     this.user.email = this.myForm.value.email;

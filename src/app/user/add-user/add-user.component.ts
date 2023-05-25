@@ -44,6 +44,10 @@ export class AddUserComponent implements OnInit {
 
   addUser() {
 
+    if(this.addUserForm.invalid){
+      this.addUserForm.markAllAsTouched();
+      return;
+    }
     this.user.name = this.addUserForm.value.name;
     this.user.surname = this.addUserForm.value.surname;
     this.user.email = this.addUserForm.value.email;

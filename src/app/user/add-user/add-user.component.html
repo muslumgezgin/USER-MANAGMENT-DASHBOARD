@@ -16,6 +16,9 @@
         </mat-form-field>
         <mat-form-field class="full-width">
             <input type="email" matInput formControlName="email" value={{user.email}} placeholder="Ex. pat@example.com">
+            <mat-error *ngIf="myError('email','required')">
+                email is required
+            </mat-error>
             <mat-error *ngIf="myError('email','email')">
                 Please enter a valid email address
             </mat-error>
