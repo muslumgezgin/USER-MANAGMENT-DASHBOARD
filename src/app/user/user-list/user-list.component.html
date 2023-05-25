@@ -37,13 +37,13 @@
         <ng-container matColumnDef="actions">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let row">
-                <button mat-icon-button class="button-icon" color="primary" (click)="edit(row)">
+                <button mat-icon-button class="button-icon" color="primary" (click)="navigate(row,'users/edit')">
                     <mat-icon class="primary">edit</mat-icon>
                 </button>
                 <button mat-icon-button class="button-icon" color="warn" (click)="delete(row)">
                     <mat-icon class="warn">delete</mat-icon>
                 </button>
-                <button mat-icon-button class="button-icon" color="primary" (click)="gotoEvents(row)">
+                <button mat-icon-button class="button-icon" color="primary" (click)="navigate(row,'users/event')">
                     <mat-icon class="default">history</mat-icon>
                 </button>
             </mat-cell>

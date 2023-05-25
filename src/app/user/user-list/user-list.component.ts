@@ -54,12 +54,8 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  edit(user: User) {
-    this.route.navigate(['users/edit', user.id]);
-  }
-
-  gotoEvents(user: User) {
-    this.route.navigate(['users/event', user.id]);
+  navigate(user: User, path: string) {
+    this.route.navigate([path, user.id]);
   }
 
   addUser() {
