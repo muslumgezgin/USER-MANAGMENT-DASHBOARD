@@ -8,7 +8,6 @@ import { UserService } from './core/services/user.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ExceptionHandlerHttpInterceptor } from './core/interceptors/exception-handler-interceptor';
-import { RequestHandlerInterceptor } from './core/interceptors/request-handler-interceptor';
 
 
 @NgModule({
@@ -27,11 +26,6 @@ import { RequestHandlerInterceptor } from './core/interceptors/request-handler-i
       {
         provide: HTTP_INTERCEPTORS,
         useClass: ExceptionHandlerHttpInterceptor,
-        multi: true
-      },
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: RequestHandlerInterceptor,
         multi: true
       }
     ],
