@@ -4,7 +4,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { BackendServiceHelper } from 'src/app/core/Helpers/backend-service.helper';
+import { BackendServiceHelper } from 'src/app/core/helpers/backend-service.helper';
 import Swal from 'sweetalert2';
 
 @Component({

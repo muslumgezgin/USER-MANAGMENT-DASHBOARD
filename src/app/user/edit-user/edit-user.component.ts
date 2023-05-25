@@ -4,7 +4,7 @@ import { StorageEventType, User } from 'src/app/core/models/user.model';
 import { UserService } from 'src/app/core/services/user.service';
 import { DEFAULT_USER } from '../user-contant';
 import { FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
-import { BackendServiceHelper } from 'src/app/core/Helpers/backend-service.helper';
+import { BackendServiceHelper } from 'src/app/core/helpers/backend-service.helper';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,7 +17,7 @@ export class EditUserComponent implements OnInit {
   user: User = DEFAULT_USER;
   userID: number;
   public myForm: FormGroup;
-  
+
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
     let id = this.route.snapshot.paramMap.get('id');
     this.userID = Number(id);

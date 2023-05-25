@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { StorageEventType, User } from 'src/app/core/models/user.model';
 import { UserService } from 'src/app/core/services/user.service';
 import { DEFAULT_USER } from '../user-contant';
-import { BackendServiceHelper } from 'src/app/core/Helpers/backend-service.helper';
+import { BackendServiceHelper } from 'src/app/core/helpers/backend-service.helper';
 import Swal from 'sweetalert2';
 
 @Component({
