@@ -21,7 +21,6 @@ export class UserListComponent implements OnInit {
   length = 0;
   pageIndex = 0;
   pageEvent!: PageEvent;
-
   displayedColumns: string[] = [
     'id',
     'name',
@@ -30,8 +29,8 @@ export class UserListComponent implements OnInit {
     'actions'
   ];
 
-
   constructor(private userService: UserService, private route: Router) { }
+
   ngOnInit(): void {
     this.getUsers();
   }
@@ -85,7 +84,6 @@ export class UserListComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-
         if (BackendServiceHelper.isBackendServiceAvailable()) {
 
           this.userService.deleteUser(user.id).subscribe(data => {
@@ -101,8 +99,6 @@ export class UserListComponent implements OnInit {
           let message = user.name + " deleted event saved local storage";
           this.fireSweetAlert(message)
         }
-
-
       }
     })
   }

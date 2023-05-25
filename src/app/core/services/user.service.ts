@@ -11,7 +11,6 @@ export class UserService {
 
   constructor(private client: HttpClient) { }
 
-
   getUsers(): Observable<User[]> {
     let url = `${this.apiHost}`;
     return this.client.get<any[]>(url);

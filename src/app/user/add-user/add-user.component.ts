@@ -16,6 +16,7 @@ export class AddUserComponent implements OnInit {
 
   user: User = DEFAULT_USER;
   public addUserForm: FormGroup;
+
   constructor(private userService: UserService, private router: Router) {
     this.addUserForm = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -41,8 +42,8 @@ export class AddUserComponent implements OnInit {
     })
   }
 
-
   addUser() {
+
     this.user.name = this.addUserForm.value.name;
     this.user.surname = this.addUserForm.value.surname;
     this.user.email = this.addUserForm.value.email;
@@ -56,7 +57,6 @@ export class AddUserComponent implements OnInit {
           this.router.navigate(['users']);
         }
       })
-
     } else {
       BackendServiceHelper.addUserEventToLocalStorage({ user: this.user, eventType: StorageEventType.Add });
       let message = this.user.name + " saved event saved local storage";

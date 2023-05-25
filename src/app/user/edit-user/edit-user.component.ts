@@ -17,6 +17,7 @@ export class EditUserComponent implements OnInit {
   user: User = DEFAULT_USER;
   userID: number;
   public myForm: FormGroup;
+  
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
     let id = this.route.snapshot.paramMap.get('id');
     this.userID = Number(id);
@@ -31,9 +32,7 @@ export class EditUserComponent implements OnInit {
     this.userService.getUserById(this.userID).subscribe(data => {
       this.user = data;
       this.myForm.setValue({ name: data.name, surname: data.surname, email: data.email });
-
     })
-
   }
 
   cancel() {
@@ -49,6 +48,7 @@ export class EditUserComponent implements OnInit {
       timer: 1500
     })
   }
+
   updateUser() {
     this.user.name = this.myForm.value.name;
     this.user.surname = this.myForm.value.surname;
@@ -62,20 +62,15 @@ export class EditUserComponent implements OnInit {
           this.router.navigate(['users']);
         }
       })
-
     } else {
       BackendServiceHelper.addUserEventToLocalStorage({ user: this.user, eventType: StorageEventType.Update });
       let message = this.user.name + " updated event saved local storage";
       this.fireSweetAlert(message);
       this.router.navigate(['users']);
     }
-
   }
 
   public myError = (controlName: string, errorName: string) => {
     return this.myForm.controls[controlName].hasError(errorName);
   }
-
-
-
 }

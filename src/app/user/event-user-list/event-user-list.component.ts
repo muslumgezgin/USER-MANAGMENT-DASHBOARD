@@ -33,6 +33,7 @@ export class EventUserListComponent implements OnInit {
     let id = this.route.snapshot.paramMap.get('id');
     this.userID = Number(id);
   }
+
   ngOnInit(): void {
     this.UserListEvents = BackendServiceHelper.getUserEventsFromLocalStorage(this.userID);
     this.dataSource.data = this.UserListEvents;

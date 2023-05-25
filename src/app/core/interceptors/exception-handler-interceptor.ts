@@ -9,26 +9,17 @@ export class ExceptionHandlerHttpInterceptor implements HttpInterceptor {
     constructor() { }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        return next.handle(req)
-            .pipe(
-                catchError((error: HttpErrorResponse) => {
+        return next.handle(req).pipe(
+            catchError((error: HttpErrorResponse) => {
 
-                    if (error.status === 401) {
-                        // redirect to the login route
-                        // or show a modal
-                    }
-
-                    const errorMessage = error.error.message ? error.error.message : error.message;
-                    this.fireSweetAlertError(errorMessage);
-
-
-                    // do something with the error
-                    const err = new Error('test');
-                    return throwError(() => err);
-
-
-                })
-            );
+                const errorMessage = error.error.message ? error.error.message : error.message;
+                this.fireSweetAlertError(errorMessage);
+                
+                // do something with the error
+                const err = new Error('test');
+                return throwError(() => err);
+            })
+        );
     }
 
     fireSweetAlertError(message: string) {
