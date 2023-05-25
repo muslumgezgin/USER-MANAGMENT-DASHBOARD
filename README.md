@@ -1,10 +1,28 @@
 # UserManagementDashboard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
+This project is a user management dashboard application built with Angular, TypeScript, and RxJS. It allows users to view, create, update, and delete user information.
 
-## Development server
+### Prerequisites
+
+To run this project, you need to have the following software installed on your system:
+
+- Node.js (at least version 12.x)
+- Angular CLI
+- json-server (globally installed)
+
+## Front-End server
+
+`cd user-management-dashboard`
+`npm install`
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+## Back-End server
+
+`cd user-management-dashboard`
+`npm install`
+
+Run `json-server --watch db.json` for a dev server. Navigate to `http://localhost:300/`.
 
 ## Code scaffolding
 

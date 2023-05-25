@@ -1,0 +1,25 @@
+<form [formGroup]="myForm" class="form center">
+    <div mat-dialog-content>
+        <h2>Edit User</h2>
+        <mat-form-field class="full-width">
+            <input formControlName="name" value={{user.name}} ngDefaultControl matInput placeholder="Field Name">
+            <mat-error *ngIf="myError('name','required')">
+                Field name is required
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input type="" formControlName="surname" value={{user.surname}} ngDefaultControl matInput
+                placeholder="Field Surname">
+            <mat-error *ngIf="myError('surname','required')">
+                surname is required
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input type="email" matInput formControlName="email" value={{user.email}} placeholder="Ex. pat@example.com">
+            <mat-error *ngIf="myError('email','email')">
+                Please enter a valid email address
+            </mat-error>
+        </mat-form-field>
+        <button mat-button color="primary" (click)="updateUser()">Update User</button>
+    </div>
+</form>

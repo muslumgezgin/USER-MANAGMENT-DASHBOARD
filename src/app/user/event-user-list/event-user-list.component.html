@@ -1,0 +1,43 @@
+<div class="mat-elevation-z8 center">
+    <a class="add-icon" mat-button [routerLink]="'/users/add'">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add"></mat-icon>
+    </a>
+    <mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>{{'id'}}</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.user.id}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>{{'name'}}</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                {{row.user.name}}
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="surname">
+            <mat-header-cell *matHeaderCellDef>{{'surname'}}</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                {{row.user.surname}}
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef>{{'email'}}</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                {{row.user.email}}
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="eventType">
+            <mat-header-cell *matHeaderCellDef>{{'eventType'}}</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                {{row.eventType}}
+            </mat-cell>
+        </ng-container>
+        <!-- Header and Row Declarations -->
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-paginator #paginator [pageSize]="pageSize" [pageIndex]="pageIndex" (page)="handlePageEvent($event)"
+        showFirstLastButtons>
+    </mat-paginator>
+</div>
