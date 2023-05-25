@@ -14,6 +14,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { ReactiveFormsModule } from '@angular/forms';
 import { EventUserListComponent } from './event-user-list/event-user-list.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 
@@ -37,7 +38,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatSortModule,
     MatPaginatorModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDividerModule
   ]
 })
 export class UserModule { }
