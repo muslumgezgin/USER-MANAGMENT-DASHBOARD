@@ -5,9 +5,6 @@ import { UserService } from "../services/user.service";
 import { Observable, of } from "rxjs";
 
 export class BackendServiceHelper {
-    static getBaseUrl() {
-        return "http://localhost:3000/";
-    }
 
     static apiStartTime: Time = { hours: 16, minutes: 0 }
     static apiEndTime: Time = { hours: 0, minutes: 0 };
@@ -36,15 +33,17 @@ export class BackendServiceHelper {
     static getAllEventsFromLocalStorage(): { events: UserLocalStorageDto[], shouldRemoveKeys: string[] } {
         let events: UserLocalStorageDto[] = []
         let shouldRemoveKeys: string[] = [];
+        // here we should get all the keys from the local storage
         for (let i = 0; i < localStorage.length; i++) {
             let key = localStorage.key(i);
+
+            // here we should check if the key is a user key
             if (key?.includes("user")) {
                 let currenItem = localStorage.getItem(key)
                 if (currenItem) {
                     let currentItemEvents = JSON.parse(currenItem);
                     // this should be disccused with the team
-                    console.log(currentItemEvents)
-                    console.log(currentItemEvents[currentItemEvents.length - 1])
+                    // it depends on the business logic
                     events.push(currentItemEvents[currentItemEvents.length - 1]);
                     shouldRemoveKeys.push(key);
                 }
@@ -55,9 +54,11 @@ export class BackendServiceHelper {
 
 
 
-    static finisAllEventsFromLocalStorage(userService: UserService): Observable<any> {
+    static finishAllEventsFromLocalStorage(userService: UserService): Observable<any> {
         const { events, shouldRemoveKeys } = this.getAllEventsFromLocalStorage();
 
+        // here we should call the api to finish the events
+        // and then remove the keys from the local storage
         if (events.length > 0) {
             for (const event of events) {
                 if (event.eventType == StorageEventType.Add) {

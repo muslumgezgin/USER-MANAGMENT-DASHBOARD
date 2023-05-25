@@ -9,9 +9,9 @@ export class RequestHandlerHttpInterceptor implements HttpInterceptor {
     constructor(private userService: UserService) { }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
+       // if backend service is available, finish all events from local storage
         if (BackendServiceHelper.isBackendServiceAvailable()) {
-            console.log('BackendServiceHelper.isBackendServiceAvailable()');
-            BackendServiceHelper.finisAllEventsFromLocalStorage(this.userService).subscribe(data => { });
+            BackendServiceHelper.finishAllEventsFromLocalStorage(this.userService).subscribe(data => { });
         }
         return next.handle(req);
     }
